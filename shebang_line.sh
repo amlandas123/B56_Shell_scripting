@@ -3,4 +3,4 @@
 
 echo "Hello welcome to the first program"
 
-echo -e "Hello!! \n How are you"
+echo -e "\tHello!!\nHow are you"
