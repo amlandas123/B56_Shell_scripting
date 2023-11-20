@@ -3,7 +3,7 @@
 
 echo -e "\e[31m Enter your name:\e[0m\t"
 read name
-echo -e "enter your ID:\t"
+echo -e "\e[36m Enter your ID:\e[0m\t"
 read id
 useradd -u $id $name
-echo -e "User $name with id $id has been added succesfully\n"
+echo -e "\e[94m User $name with id $id has been added succesfully\e[0m\n"
