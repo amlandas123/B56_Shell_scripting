@@ -1,11 +1,10 @@
 #!/bin/bash
 
-n=10
-for (( i=1 ; i<=$n ; i++ )); 
-do
-    if [`expr $i % 2` == 0 ] then
-        echo -e"\e[32m The number is even \e[0m";
-    else
-        echo -e"\e[36m The number is odd \e[0m";
-    fi
-done
+echo -e "\e[32m Enter the number: \e[0m"
+read num
+if [ `expr $num % 2` == 0 ]
+then
+	echo "$num is even";
+else
+	echo "$num is Odd";
+fi
