@@ -39,5 +39,16 @@ else
     echo -e "\e[31m Failure \e[0m"
 fi 
 
+echo -n "starting Nginx"
+systemctl start nginx &>> /tmp/frontend.log
+if [ $? -eq 0 ] ; then 
+    echo -e "\e[32m Successfully Started \e[0m"
+else 
+    echo -e "\e[31m Failure \e[0m"
+fi 
+
+echo -n " Nginx Status"
+systemctl status nginx
+
 
 
