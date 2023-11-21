@@ -1,5 +1,5 @@
 #!/bin/bash
 
-user_id=$(id -u)
+df -ht >> output.txt
 
-echo $user_id
+
