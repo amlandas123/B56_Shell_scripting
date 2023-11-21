@@ -48,7 +48,15 @@ else
 fi 
 
 echo -n " Nginx Status"
-systemctl status nginx
+systemctl status nginx &>> /tmp/frontend.log
+
+cd /usr/share/nginx/html
+rm -rf *
+unzip /tmp/frontend.zip
+mv frontend-main/* .
+mv static/* .
+rm -rf frontend-main README.md
+mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
 
 
