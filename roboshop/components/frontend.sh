@@ -9,7 +9,7 @@ if [ $user_id -ne 0 ];then
         echo -e "\e[32m Please run the program as sudo user \e[0m"
         exit 1
 fi
-exit 2
+
 
 echo -e "\e[32m ******Configuring Frontend******\e[0m"
 
