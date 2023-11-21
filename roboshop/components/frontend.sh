@@ -11,6 +11,7 @@ if [ $user_id -ne 0 ];then
         exit 1
 fi
 
+
 echo -e "\e[32m ******Configuring Frontend******\e[0m"
 
 echo -n "Installing Nginx:"
