@@ -1,5 +1,4 @@
 #!/bin/bash
 
-df -hT >> output.txt
 
-
+output.txt << ls -ltr
