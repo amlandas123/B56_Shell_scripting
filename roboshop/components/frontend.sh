@@ -7,7 +7,7 @@ component=$1
 
 if [ $user_id -ne 0 ];then
         echo -e "\e[32m Please run the program as sudo user \e[0m"
-#        echo -e"\e[31m Example usage:\n \t\t \e[0m sudo bash scriptname componentname"
+        echo -e"\e[31m Example usage:\n \t\t \e[0m sudo bash scriptname componentname"
         exit 1
 fi
 
