@@ -7,10 +7,10 @@ read age
 
 if [ $age -lt 18 ]; then
       echo " You are not eligible to Enter"
-      exit 0
+      echo exit 0
 else 
       echo " Welcome $name to the Hall"
-      exit 1
+      echo exit 1
 fi
 
           
