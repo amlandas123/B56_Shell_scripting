@@ -21,7 +21,7 @@ stat(){
 echo -e "\e[32m ******Configuring $component******\e[0m"
 
 echo -n "Installing Nginx:"
-yum install -y nginx &>> app_log
+yum install -y nginx &>> $app_log
 stat $?
 
 
@@ -30,16 +30,16 @@ curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/$com
 stat $?
 
 echo -n "Enabling Nginx:"
-systemctl enable nginx &>> app_log
+systemctl enable nginx &>> $app_log
 stat $?
 
 echo -n "starting Nginx:"
-systemctl start nginx &>> app_log
+systemctl start nginx &>> $app_log
 stat $?
 
 
 echo -n "Nginx Status:"
-systemctl status nginx &>> app_log
+systemctl status nginx &>> $app_log
 stat $?
 echo -n "Component cleanup"
 cd /usr/share/nginx/html
@@ -47,7 +47,7 @@ rm -rf *
 stat $?
 
 echo -n "Component Extraction"
-unzip /tmp/${component}.zip &>> app_log
+unzip /tmp/${component}.zip &>> $app_log
 mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md
