@@ -29,16 +29,16 @@ echo -n "Downloading $Component  :"
 curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/$component/archive/main.zip"
 stat $?
 
-echo -n "Enabling Nginx"
+echo -n "Enabling Nginx:"
 systemctl enable nginx &>> app_log
 stat $?
 
-echo -n "starting Nginx"
+echo -n "starting Nginx:"
 systemctl start nginx &>> app_log
 stat $?
 
 
-echo -n " Nginx Status"
+echo -n "Nginx Status:"
 systemctl status nginx &>> app_log
 stat $?
 echo -n "Component cleanup"
