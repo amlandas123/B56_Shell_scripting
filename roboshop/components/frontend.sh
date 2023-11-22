@@ -4,7 +4,7 @@
 
 user_id=$(id -u)
 component=frontend
-app_log= "/tmp/${component}.log"
+#app_log= "/tmp/${component}.log"
 
 if [ $user_id -ne 0 ];then
         echo -e "\e[32m Please run the program as sudo user \e[0m"
@@ -21,7 +21,7 @@ stat(){
 echo -e "\e[32m ******Configuring $component******\e[0m"
 
 echo -n "Installing Nginx:"
-yum install nginx -y  &>>  $app_log
+yum install nginx -y  &>>  /tmp/${component}.log
 stat $?
 
 
@@ -30,16 +30,16 @@ curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/$com
 stat $?
 
 echo -n "Enabling Nginx:"
-systemctl enable nginx &>> $app_log
+systemctl enable nginx &>> /tmp/${component}.log
 stat $?
 
 echo -n "starting Nginx:"
-systemctl start nginx &>> $app_log
+systemctl start nginx &>> /tmp/${component}.log
 stat $?
 
 
 echo -n "Nginx Status:"
-systemctl status nginx &>> $app_log
+systemctl status nginx &>> /tmp/${component}.log
 stat $?
 echo -n "Component cleanup"
 cd /usr/share/nginx/html
@@ -47,7 +47,7 @@ rm -rf *
 stat $?
 
 echo -n "Component Extraction"
-unzip -o /tmp/${component}.zip &>> $app_log
+unzip -o /tmp/${component}.zip &>> /tmp/${component}.log
 mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md
