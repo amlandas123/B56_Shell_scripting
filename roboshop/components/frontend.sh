@@ -41,7 +41,7 @@ stat $?
 echo -n " Nginx Status"
 systemctl status nginx &>> app_log
 stat $?
-echo -e "Component cleanup"
+echo -n "Component cleanup"
 cd /usr/share/nginx/html
 rm -rf *
 stat $?
