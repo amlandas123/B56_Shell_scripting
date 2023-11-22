@@ -25,7 +25,7 @@ yum install -y nginx &>> app_log
 stat $?
 
 
-echo -n "Downloading $Component  :"
+echo -n "Downloading Nginx $Component  :"
 curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/$component/archive/main.zip"
 stat $?
 
