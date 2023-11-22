@@ -21,7 +21,7 @@ stat(){
 echo -e "\e[32m ******Configuring $component******\e[0m"
 
 echo -n "Installing Nginx:"
-yum install -y nginx &>> $app_log
+yum install nginx -y  &>>  $app_log
 stat $?
 
 
@@ -47,7 +47,7 @@ rm -rf *
 stat $?
 
 echo -n "Component Extraction"
-unzip /tmp/${component}.zip &>> $app_log
+unzip -o /tmp/${component}.zip &>> $app_log
 mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md
