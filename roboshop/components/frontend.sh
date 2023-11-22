@@ -47,7 +47,7 @@ rm -rf *
 stat $?
 
 echo -n "Component Extraction"
-unzip /tmp/${component}.zip >> app_log
+unzip /tmp/${component}.zip
 mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md
