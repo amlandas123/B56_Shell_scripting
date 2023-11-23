@@ -7,7 +7,7 @@ component=mongodb
 mongo_url= https://raw.githubusercontent.com/stans-robot-project/${component}/main/mongo.repo
 Logfile=/tmp/${component}.log
 
-if [user_id -ne 0];then
+if [ user_id -ne 0 ];then
         echo -e "\e[31m Run the program as sudo user \e[0m "
         exit 1
 fi
