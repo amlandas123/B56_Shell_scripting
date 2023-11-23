@@ -50,10 +50,10 @@ stat $?
 echo -n "Extracting the Zip file: "
 cd /tmp
 unzip mongodb.zip &>> $Logfile
-cd mongodb-main
 stat $?
 
 echo -n "Injecting the Schemas: "
+cd mongodb-main
 mongo < catalogue.js &>> $Logfile
 mongo < users.js &>> $Logfile
 stat $?
