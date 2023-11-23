@@ -56,8 +56,15 @@ stat $?
 
 echo -n "Updating Mongodb DNS: "
 sed -i -e 's/MONGO_DNSNAME/mongod.roboshop.internal/' $Appuser_home/systemd.service
-systemctl restart mongod
 stat $?
 
+echo -n "Updating Mongod service: "
+mv $Appuser_home/systemd.service /etc/systemd/system/${component}.service
+stat $?
 
+echo -n "Starting ${component} service: "
+systemctl daemon-reload
+systemctl enable ${component}
+systemctl start ${component}
+stat $?
 
