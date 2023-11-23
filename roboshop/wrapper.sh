@@ -7,4 +7,4 @@ if [ $? -ne 0 ]; then
         echo -e "\e[31m For Example: \e[0m: bash wrapper.sh <components name>"
         exit 0
 fi 
-   
+  
