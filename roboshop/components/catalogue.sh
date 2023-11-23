@@ -23,7 +23,7 @@ stat() {
 
 echo -n " NodeJS installation: "
 curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
-yum install nodejs -y
+yum install nodejs -y &>> $Logfile
 stat $?
 
 echo -n "Adding Application User: "
@@ -52,7 +52,7 @@ echo -n "Installing Components: "
 mv catalogue-main catalogue
 cd $Appuser_home
 npm install &>> $Logfile
-
+stat $?
 
 
 
