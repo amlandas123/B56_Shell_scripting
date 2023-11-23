@@ -55,7 +55,7 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 for element in catalogue;do
-    sed -i -e '/${element}/s/localhost/catalogue.roboshop.internal/' /etc/nginx/default.d/$App_user.conf
+    sed -i -e '/${element}/s/localhost/catalogue.roboshop.internal/' /etc/nginx/default.d/${App_user}.conf
 done
 stat $?    
     
