@@ -49,7 +49,7 @@ stat $?
 
 echo -n "Extracting the Zip file: "
 cd /tmp
-unzip mongodb.zip
+unzip mongodb.zip &>> $Logfile
 cd mongodb-main
 stat $?
 
