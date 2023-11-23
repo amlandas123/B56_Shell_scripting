@@ -4,7 +4,7 @@
 
 user_id=$(id -u)
 component=frontend
-Logfile= "/tmp/frontend.log"
+Logfile= "/tmp/${frontend}.log"
 
 if [ $user_id -ne 0 ];then
         echo -e "\e[32m Please run the program as sudo user \e[0m"
