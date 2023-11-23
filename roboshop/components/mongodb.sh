@@ -4,7 +4,7 @@ echo -e "\e[32m ******Configuring mongodb******\e[0m"
 
 user_id=$(id -u)
 component=mongodb
-mongo_url= https://raw.githubusercontent.com/stans-robot-project/${component}/main/mongo.repo
+mongo_url=https://raw.githubusercontent.com/stans-robot-project/${component}/main/mongo.repo
 Logfile=/tmp/${component}.log
 
 if [ user_id -ne 0 ];then
