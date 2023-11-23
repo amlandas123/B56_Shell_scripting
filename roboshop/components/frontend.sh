@@ -54,6 +54,17 @@ rm -rf frontend-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
+for element in catalogue;do
+    sed -i -e '/${element}/s/localhost/catalogue.roboshop.internal/' /etc/nginx/default.d/$App_user.conf
+done
+stat $?    
+    
+echo -n "Restarting nginx: "
+systemctl enable nginx   &>> $Logfile
+systemctl daemon-reload  &>> $Logfile
+systemctl restart nginx  &>> $Logfile
+stat $?
+
 echo -e "\e[32m ******Configuring $component Successful******\e[0m"
 
 
