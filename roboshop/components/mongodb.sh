@@ -5,6 +5,7 @@ echo -e "\e[32m ******Configuring mongodb******\e[0m"
 user_id=$(id -u)
 component=mongodb
 mongo_url=https://raw.githubusercontent.com/stans-robot-project/${component}/main/mongo.repo
+schema_url=https://github.com/stans-robot-project/${component}/archive/main.zip
 Logfile=/tmp/${component}.log
 
 if [ user_id -ne 0 ];then
@@ -40,4 +41,19 @@ stat $?
 echo -n "Enabling Visibility of ${component}: "
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 systemctl restart mongod
+stat $?
+
+echo -n "Downloading the Schema: "
+curl -s -L -o /tmp/mongodb.zip $schema_url 
+stat $?
+
+echo -n "Extracting the Zip file: "
+cd /tmp
+unzip mongodb.zip
+cd mongodb-main
+stat $?
+
+echo -n "Injecting the Schemas: "
+mongo < catalogue.js &>> $Logfile
+mongo < users.js &>> $Logfile
 stat $?
