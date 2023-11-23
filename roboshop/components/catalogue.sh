@@ -54,5 +54,9 @@ cd $Appuser_home
 npm install &>> $Logfile
 stat $?
 
+echo -n "Updating Mongodb DNS: "
+sed -i -e 's/MONGO_DNSNAME/mongod.roboshop.internal/' $Appuser_home/system.service
+stat $?
+
 
 
