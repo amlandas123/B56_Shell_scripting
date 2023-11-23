@@ -49,7 +49,7 @@ stat $?
 
 echo -n "Extracting the Zip file: "
 cd /tmp
-unzip mongodb.zip
+unzip -o mongodb.zip &>> $Logfile
 stat $?
 
 echo -n "Injecting the Schemas: "
