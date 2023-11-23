@@ -56,6 +56,7 @@ stat $?
 
 echo -n "Updating Mongodb DNS: "
 sed -i -e 's/MONGO_DNSNAME/mongod.roboshop.internal/' $Appuser_home/systemd.service
+systemctl restart mongod
 stat $?
 
 
