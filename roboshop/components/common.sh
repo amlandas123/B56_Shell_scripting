@@ -2,9 +2,15 @@
 
 user_id=$(id -u)
 Logfile=/tmp/${component}.log
+
+## Variabls for Application
 App_user=roboshop
 Appuser_home="/home/${App_user}/${component}"
 component_url="https://github.com/stans-robot-project/${component}/archive/main.zip"
+
+##Variables for Database
+mongo_url=https://raw.githubusercontent.com/stans-robot-project/${component}/main/mongo.repo
+schema_url=https://github.com/stans-robot-project/${component}/archive/main.zip
 
 if [ user_id -ne 0 ];then
         echo -e "\e[31m Run the program as sudo user \e[0m "
@@ -85,4 +91,31 @@ NodeJS(){
     service_start       #call function to start service
 
 
+}
+
+config_mongodb(){
+    echo -n "Enabling ${component}: "
+    systemctl enable mongod  &>> $Logfile
+    stat $?
+
+    echo -n "Starting ${component}: "
+    systemctl start mongod  &>> $Logfile
+    stat $?
+
+    echo -n "Enabling Visibility of ${component}: "
+    sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+    systemctl restart mongod
+    stat $?
+}
+
+mongo_DB(){
+    echo -n "Setting mongo DB repos:"
+    curl -s -o /etc/yum.repos.d/${component}.repo   $mongo_url
+    stat $?
+
+    echo -n "Installing ${component}: "
+    yum install -y mongodb-org  &>> $Logfile
+    stat $?
+
+    config_mongodb
 }
