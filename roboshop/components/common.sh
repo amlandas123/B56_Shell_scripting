@@ -36,18 +36,18 @@ download_cleanup_extract(){
     stat $?
 
     echo -n "Clean Up $App_user existing components: "
-    #rm -rf $Appuser_home &>> $Logfile
+    rm -rf $Appuser_home &>> $Logfile
     stat $?
 
     echo -n "Extracting components: "
-    #cd /home/roboshop
+    cd /home/roboshop
     unzip -o /tmp/${component}.zip &>> $Logfile
     stat $?
 }
 
 config_components(){
     echo -n "Configuring $component permissions: "
-    mv catalogue-main catalogue
+    mv ${Appuser_home}-main ${Appuser_home}
     chown -R ${App_user}:${App_user} $Appuser_home
     chmod 770 $Appuser_home
     stat $?
