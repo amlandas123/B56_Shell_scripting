@@ -1,12 +1,8 @@
 #!/bin/bash
 
 echo -e "\e[32m ******Configuring catalogue******\e[0m"
-user_id=$(id -u)
+source components/common.sh
 component=catalogue
-Logfile=/tmp/${component}.log
-App_user=roboshop
-Appuser_home=/home/${App_user}/${component}
-cat_url=https://github.com/stans-robot-project/${component}/archive/main.zip
 
 if [ user_id -ne 0 ];then
         echo -e "\e[31m Run the program as sudo user \e[0m "
