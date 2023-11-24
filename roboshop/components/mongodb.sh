@@ -3,8 +3,7 @@
 echo -e "\e[32m ******Configuring mongodb******\e[0m"
 component=mongodb
 source components/common.sh
-
-mongo_DB
+mongo_DB    #Calling function from common.sh
 
 echo -n "Downloading the Schema: "
 curl -s -L -o /tmp/mongodb.zip $schema_url 

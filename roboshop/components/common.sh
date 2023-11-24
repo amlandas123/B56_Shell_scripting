@@ -11,6 +11,7 @@ component_url="https://github.com/stans-robot-project/${component}/archive/main.
 ##Variables for Database
 mongo_url=https://raw.githubusercontent.com/stans-robot-project/${component}/main/mongo.repo
 schema_url=https://github.com/stans-robot-project/${component}/archive/main.zip
+redis_url=https://raw.githubusercontent.com/stans-robot-project/$component/main/${component}.repo
 
 if [ user_id -ne 0 ];then
         echo -e "\e[31m Run the program as sudo user \e[0m "
@@ -35,7 +36,7 @@ create_user(){
         echo -e "\e[31m User Already Exist \e[0m"
     fi
 }
-
+#This Function is for NodeJS
 download_cleanup_extract(){
     echo -n "Download components: "
     curl -s -L -o /tmp/${component}.zip $component_url
@@ -50,7 +51,7 @@ download_cleanup_extract(){
     unzip -o /tmp/${component}.zip &>> $Logfile
     stat $?
 }
-
+#This Function is for NodeJS
 config_components(){
     echo -n "Configuring $component permissions: "
     mv ${Appuser_home}-main ${Appuser_home}
@@ -64,7 +65,7 @@ config_components(){
     stat $?
 
 }
-
+#This Function is for NodeJS
 service_start(){
     echo -n "Starting ${component} service: "
     systemctl daemon-reload
@@ -72,7 +73,7 @@ service_start(){
     systemctl start ${component}
     stat $?
 }
-
+#This Function is for NodeJS
 NodeJS(){
     #echo -n " NodeJS installation: "
     #curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
@@ -92,7 +93,7 @@ NodeJS(){
 
 
 }
-
+#This Function is for Mongo DB
 config_mongodb(){
     echo -n "Enabling ${component}: "
     systemctl enable mongod  &>> $Logfile
@@ -107,7 +108,7 @@ config_mongodb(){
     systemctl restart mongod
     stat $?
 }
-
+#This Function is for Mongo DB
 mongo_DB(){
     echo -n "Setting mongo DB repos:"
     curl -s -o /etc/yum.repos.d/${component}.repo   $mongo_url
@@ -118,4 +119,28 @@ mongo_DB(){
     stat $?
 
     config_mongodb
+}
+
+#This Function is for Redis
+redis_config(){
+    echo -n "Enabling Visibility of $component: "
+    sed -i -e "s/127.0.0.1/0.0.0.0/" /etc/redis.conf
+    stat $?
+
+    echo -n "Starting and Enabling $component"
+    systemctl enable redis  &>> $Logfile
+    systemctl start redis  &>> $Logfile
+    systemctl status redis -l &>> $Logfile
+}
+#This Function is for Redis
+redis(){
+    echo -n "Dowloading repo and installing Redis: "
+    curl -L $redis_url -o /etc/yum.repos.d/${component}.repo
+    stat $?
+
+    echo -n "Installing Redis: "
+    yum install redis-6.2.13 -y &>> $Logfile
+    stat $?
+
+    redis_config
 }
