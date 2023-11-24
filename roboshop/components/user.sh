@@ -1,9 +1,6 @@
 #!/bin/bash
 
 echo -e "\e[32m ******Configuring user******\e[0m"
-#!/bin/bash
-
-echo -e "\e[32m ******Configuring catalogue******\e[0m"
 component=user
 source components/common.sh
 
