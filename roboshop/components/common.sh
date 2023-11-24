@@ -41,7 +41,7 @@ download_cleanup_extract(){
 
     echo -n "Extracting components: "
     cd /home/roboshop
-    unzip /tmp/${component}.zip &>> $Logfile
+    unzip -o /tmp/${component}.zip &>> $Logfile
     stat $?
 }
 
@@ -78,7 +78,7 @@ NodeJS(){
     config_components   #call function for configuring components
 
     echo -n "Generating Artifacts for application: "
-    cd /home/roboshop
+    cd $Appuser_home
     npm install &>> $Logfile
     stat $?
 
