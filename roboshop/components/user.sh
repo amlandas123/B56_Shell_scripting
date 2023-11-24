@@ -8,7 +8,7 @@ NodeJS
 
 echo -n "configuring $component systemd file: "
 sed -i -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' $Appuser_home/systemd.service
-sed -i -e 's/MONGO_ENDPOINT/mongod.roboshop.internal/' $Appuser_home/systemd.service
+#sed -i -e 's/MONGO_ENDPOINT/mongod.roboshop.internal/' $Appuser_home/systemd.service
 mv $Appuser_home/systemd.service /etc/systemd/system/${component}.service
 stat $?
 
