@@ -78,7 +78,7 @@ NodeJS(){
     config_components   #call function for configuring components
 
     echo -n "Generating Artifacts for application: "
-    cd $Appuser_home
+    cd /home/roboshop
     npm install &>> $Logfile
     stat $?
 
