@@ -59,11 +59,6 @@ config_components(){
     chmod 770 $Appuser_home
     stat $?
 
-    echo -n "configuring $component systemd file: "
-    sed -i -e 's/MONGO_DNSNAME/mongod.roboshop.internal/' $Appuser_home/systemd.service
-    mv $Appuser_home/systemd.service /etc/systemd/system/${component}.service
-    stat $?
-
 }
 #This Function is for NodeJS
 service_start(){
@@ -83,14 +78,6 @@ NodeJS(){
     create_user     #call create user function
     download_cleanup_extract  #call function to download,cleanup and extract
     config_components   #call function for configuring components
-
-    echo -n "Generating Artifacts for application: "
-    cd $Appuser_home
-    npm install &>> $Logfile
-    stat $?
-
-    service_start       #call function to start service
-
 
 }
 #This Function is for Mongo DB
