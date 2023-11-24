@@ -56,7 +56,7 @@ stat $?
 
 echo -n "updating for Reverse Proxy: "
     for element in catalogue;do
-        sed -i -e '/${element}/s/localhost/${element}.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
+        sed -i -e "/${element}/s/localhost/${element}.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
     done
 stat $?    
     
