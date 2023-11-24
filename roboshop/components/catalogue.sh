@@ -4,7 +4,7 @@ echo -e "\e[32m ******Configuring catalogue******\e[0m"
 source components/common.sh
 component=catalogue
 
-
+source components/common.sh
 
 #echo -n " NodeJS installation: "
 #curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
