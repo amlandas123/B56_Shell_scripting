@@ -124,7 +124,8 @@ mongo_DB(){
 #This Function is for Redis
 redis_config(){
     echo -n "Enabling Visibility of $component: "
-    sed -i -e "s/127.0.0.1/0.0.0.0/" /etc/redis.conf && sed -i -e "s/127.0.0.1/0.0.0.0/" /etc/redis/redis.conf
+    sed -i -e "s/127.0.0.1/0.0.0.0/" /etc/redis.conf 
+    sed -i -e "s/127.0.0.1/0.0.0.0/" /etc/redis/redis.conf
     stat $?
 
     echo -n "Starting and Enabling $component"
