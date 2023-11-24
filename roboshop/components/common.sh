@@ -26,7 +26,7 @@ create_user(){
         useradd $App_user
         stat $?
     else
-        echo -e "\e[31m User Exist \e[0m"
+        echo -e "\e[31m User Already Exist \e[0m"
     fi
 }
 
@@ -47,7 +47,7 @@ download_cleanup_extract(){
 
 config_components(){
     echo -n "Configuring $component permissions: "
-    mv ${Appuser_home}-main $Appuser_home
+    mv catalogue-main catalogue
     chown -R ${App_user}:${App_user} $Appuser_home
     chmod 770 $Appuser_home
     stat $?
