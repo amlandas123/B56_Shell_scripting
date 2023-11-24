@@ -35,12 +35,12 @@ download_cleanup_extract(){
     curl -s -L -o /tmp/${component}.zip $component_url
     stat $?
 
-    echo -n "Clean Up filesexisting components: "
+    echo -n "Clean Up $App_user existing components: "
     rm -rf $Appuser_home &>> $Logfile
     stat $?
 
     echo -n "Extracting components: "
-    cd /home/roboshop
+    #cd /home/roboshop
     unzip -o /tmp/${component}.zip &>> $Logfile
     stat $?
 }
