@@ -3,8 +3,8 @@
 user_id=$(id -u)
 Logfile=/tmp/${component}.log
 App_user=roboshop
-Appuser_home=/home/${App_user}/${component}
-cat_url=https://github.com/stans-robot-project/${component}/archive/main.zip
+Appuser_home="/home/${App_user}/${component}"
+component_url="https://github.com/stans-robot-project/${component}/archive/main.zip"
 
 if [ user_id -ne 0 ];then
         echo -e "\e[31m Run the program as sudo user \e[0m "
@@ -32,7 +32,7 @@ create_user(){
 
 download_cleanup_extract(){
     echo -n "Download components: "
-    curl -s -L -o /tmp/${component}.zip $cat_url
+    curl -s -L -o /tmp/${component}.zip $component_url
     stat $?
 
     echo -n "Clean Up filesexisting components: "
