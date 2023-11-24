@@ -68,8 +68,8 @@ service_start(){
 }
 
 NodeJS(){
-    echo -n " NodeJS installation: "
-    curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+    #echo -n " NodeJS installation: "
+    #curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
     yum install nodejs -y &>> $Logfile
     stat $?
 
