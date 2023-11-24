@@ -55,7 +55,7 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 echo -n "updating for Reverse Proxy: "
-    for element in catalogue;do
+    for element in catalogue user;do
         sed -i -e "/${element}/s/localhost/${element}.roboshop.internal/" /etc/nginx/default.d/roboshop.conf
     done
 stat $?    
