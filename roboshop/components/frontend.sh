@@ -54,9 +54,10 @@ rm -rf frontend-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
-for element in catalogue;do
-    sed -i -e '/${element}/s/localhost/${element}.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
-done
+echo -n "updating for Reverse Proxy: "
+    for element in catalogue;do
+        sed -i -e '/${element}/s/localhost/${element}.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
+    done
 stat $?    
     
 echo -n "Restarting nginx: "
