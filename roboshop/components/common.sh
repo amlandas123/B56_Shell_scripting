@@ -36,7 +36,7 @@ download_cleanup_extract(){
     stat $?
 
     echo -n "Clean Up $App_user existing components: "
-    rm -rf $Appuser_home &>> $Logfile
+    #rm -rf $Appuser_home &>> $Logfile
     stat $?
 
     echo -n "Extracting components: "
