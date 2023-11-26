@@ -22,6 +22,7 @@ stat $?
 
 echo -n "**** Extracting Default root password ****"
 default_root_passwd=$(grep "temporary password" /var/log/mysqld.log | awk '{print $NF}')
+echo $default_root_passwd
 stat $?
 
 echo "show databases;" | mysql -uroot -pRoboShop@1 &>> $Logfile
