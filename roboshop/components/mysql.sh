@@ -26,10 +26,29 @@ stat $?
 
 echo "show databases;" | mysql -uroot -pRoboShop@1 &>> $Logfile
 if [ $? -ne 0 ]; then 
-    echo -n "Changing $COMPONENT root password:"
+    echo -n "Changing $component root password:"
     echo "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'" | mysql --connect-expired-password -uroot -p$defdefault_root_passwd &>> $Logfile
     stat $?
 fi 
 
 
+echo "show plugins;" |  mysql -uroot -pRoboShop@1 | grep validate_password &>> $Logfile
+if [ $? -eq 0 ]; then 
+    echo -n "Uninstalling password-validate-plugin:"
+    echo "uninstall plugin validate_password;" | mysql -uroot -pRoboShop@1 &>> $Logfile
+    stat $?
+fi 
+
+echo -n "Downloading $component Schema:"
+curl -s -L -o /tmp/${component}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+stat $? 
+
+echo -n "Extracting Schema:"
+unzip -o /tmp/${component}.zip  &>> $Logfile
+stat $? 
+
+echo -n "Injecting Schema:"
+cd ${component}-main 
+mysql -u root -pRoboShop@1 <shipping.sql &>> $Logfile
+stat $? 
 
