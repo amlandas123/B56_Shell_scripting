@@ -22,7 +22,6 @@ stat $?
 
 echo -n "**** Extracting Default root password ****"
 default_root_passwd= grep "temporary password" /var/log/mysqld.log | awk '{print $NF}'
-echo -n $default_root_passwd
 stat $?
 
 
