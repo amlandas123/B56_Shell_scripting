@@ -21,7 +21,7 @@ systemctl status mysqld &>> $Logfile
 stat $?
 
 echo -n "**** Extracting Default root password ****"
-default_root_passwd= grep "temporary password" /var/log/mysqld.log | awk '{print $NF}'
+default_root_passwd=$(grep "temporary password" /var/log/mysqld.log | awk '{print $NF}')
 stat $?
 
 
