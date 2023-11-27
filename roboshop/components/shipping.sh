@@ -6,7 +6,7 @@ component=shipping
 
 source components/common.sh
 
-maven
+Maven
 
 echo -e "\e[32m ******Completed Configuring shipping******\e[0m"
 
