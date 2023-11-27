@@ -65,7 +65,7 @@ config_components(){
     stat $?
 }
 
-}
+
 #This Function is for NodeJS
 service_start(){
     echo -n "Starting ${component} service: "
