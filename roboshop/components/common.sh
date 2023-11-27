@@ -59,6 +59,12 @@ config_components(){
     chmod 770 $Appuser_home
     stat $?
 
+    echo -n "Configuring $component Systemd file: "
+    sed -i -e 's/USERHOST/user.roboshop.internal/' -e 's/AMQPHOST/rabbitmq.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTHOST/cart.roboshop.internal/' -e 's/DBHOST/mysql.roboshop.internal/' -e 's/CARTENDPOINT/cart.roboshop.internal/' -e 's/MONGO_ENDPOINT/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' -e 's/REDIS_ENDPOINT/redis.roboshop.internal/' -e 's/CATALOGUE_ENDPOINT/catalogue.roboshop.internal/' ${APPUSER_HOME}/systemd.service
+    mv ${Appuser_home}/systemd.service /etc/systemd/system/${component}.service
+    stat $?
+}
+
 }
 #This Function is for NodeJS
 service_start(){
@@ -78,8 +84,40 @@ NodeJS(){
     create_user     #call create user function
     download_cleanup_extract  #call function to download,cleanup and extract
     config_components   #call function for configuring components
+    
+    echo -n "Generating Artifacts for application: "
+    cd $Appuser_home
+    npm install &>> $Logfile
+    stat $?
 
+    service_start
 }
+
+#This function is for Maven app installation
+Maven(){
+    echo -n "Installing Maven: "
+    yum install maven -y  &>> $Logfile
+    stat $?
+
+    create_user      #Function calling for creating user
+
+    download_cleanup_extract #Function Called for downloading, cleanup and extracting components
+
+    echo -n "Generating Artifacts for application: "
+    cd $Appuser_home
+    mvn clean package &>> $Logfile
+    mv target/shipping-1.0.jar shipping.jar
+    stat $?
+
+    config_components     #Function called for configuring installed components
+
+    service_start        #Function called for Starting the Services
+}
+
+
+
+
+
 #This Function is for Mongo DB
 config_mongodb(){
     echo -n "Enabling ${component}: "
@@ -131,4 +169,15 @@ redis(){
     stat $?
 
     redis_config
+}
+
+
+
+
+
+
+
+
+
+
 }
