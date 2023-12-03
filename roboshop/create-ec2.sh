@@ -12,7 +12,7 @@ AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-Cen
 SG_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=B56-Security-group |jq .SecurityGroups[].GroupId |sed -e 's/"//g')
 Ins_type=t3.micro
 Hosted_zone_id="Z07819082GXA8VTNL4M4B"
-instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=user-dev" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
+#instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=user-dev" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
 
 create_server(){
     echo -e "\e[36m $component-$env Server Creation In Progress \e[0m"
