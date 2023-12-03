@@ -8,10 +8,12 @@ if [ -z $1 ] || [ -z $2 ]; then
 fi 
 component=$1
 env=$2
+stopping=$3
 AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq .Images[].ImageId | sed -e 's/"//g')
 SG_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=B56-Security-group |jq .SecurityGroups[].GroupId |sed -e 's/"//g')
 Ins_type=t3.micro
 Hosted_zone_id="Z07819082GXA8VTNL4M4B"
+instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=user-dev" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
 
 create_server(){
     echo -e "\e[36m $component-$env Server Creation In Progress \e[0m"
@@ -23,6 +25,14 @@ create_server(){
     echo -e "\e[32m $component-${env} DNS record has been created \e[0m"
 
 }
+
+stop_server(){
+     echo -e "\e[36m $component-$env Server stopping In Progress \e[0m"
+     aws ec2 stop-instances --instance-ids ${instance_id}
+     echo -e "\e[36m $component-$env Server is stopped \e[0m"
+
+}
+
 if [ $1 == "all" ];then
     for i in frontend mongodb catalogue user cart redis mysql shipping rabbitmq payment;do
         component=$i
@@ -31,3 +41,7 @@ if [ $1 == "all" ];then
 else    
     create_server   
 fi
+
+if [ $3 == "stopit" ];then
+    stop_server
+fi    
