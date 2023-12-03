@@ -24,7 +24,7 @@ stop_server(){
 
 }
 
-if [ $3 == "stop" ];then
+if [ $1 == "stop" ];then
     for i in frontend mongodb catalogue user cart redis mysql shipping rabbitmq payment;do
         component=$i
         stop_server
