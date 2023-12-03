@@ -42,6 +42,11 @@ else
     create_server   
 fi
 
-if [ $3 == "stopit" ];then
-    stop_server
+if [ $1 == "stopit" ];then
+    for i in frontend mongodb catalogue user cart redis mysql shipping rabbitmq payment;do
+        component=$i
+        stop_server
+    done 
+else    
+    stop_server   
 fi    
