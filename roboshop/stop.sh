@@ -14,6 +14,10 @@ stop_server(){
      instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=${component}-${env}" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
      aws ec2 terminate-instances --instance-ids ${instance_id}
      echo -e "\e[36m $component-$env Server is stopped \e[0m"
+     echo -e "\e[36m $component-${env} DNS record Deletion In Progress \e[0m \n\n"
+    sed -e "s/Component/${component}/" -e "s/Ipaddress/${private_IP}/" route53del.json > /tmp/DNS_del.json
+    aws route53 change-resource-record-sets --hosted-zone-id ${Hosted_zone_id} --change-batch file:///tmp/DNS_del.json
+    echo -e "\e[32m $component-${env} DNS record has been deleted \e[0m"
 
 }
 
