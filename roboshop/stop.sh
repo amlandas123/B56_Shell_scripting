@@ -26,7 +26,7 @@ stop_server(){
 
 if [ $1 == "stop" ];then
     for i in frontend mongodb catalogue user cart redis mysql shipping rabbitmq payment;do
-        component=$i
+        component=$i-$env
         stop_server
     done 
 else    
