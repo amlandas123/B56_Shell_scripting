@@ -13,12 +13,13 @@ stopping=$3
 #SG_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=B56-Security-group |jq .SecurityGroups[].GroupId |sed -e 's/"//g')
 #Ins_type=t3.micro
 #Hosted_zone_id="Z07819082GXA8VTNL4M4B"
-instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=${component}-${env}" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
+
 
 
 
 stop_server(){
      echo -e "\e[36m $component-$env Server stopping In Progress \e[0m"
+     instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=${component}-${env}" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
      aws ec2 stop-instances --instance-ids ${instance_id}
      echo -e "\e[36m $component-$env Server is stopped \e[0m"
 
@@ -26,7 +27,7 @@ stop_server(){
 
 if [ $1 == "stop" ];then
     for i in frontend mongodb catalogue user cart redis mysql shipping rabbitmq payment;do
-        component=$i-$env
+        component=$i
         stop_server
     done 
 else    
