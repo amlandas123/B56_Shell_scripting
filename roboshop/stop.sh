@@ -8,6 +8,7 @@ if [ -z $1 ] || [ -z $2 ]; then
 fi 
 component=$1
 env=$2
+Hosted_zone_id="Z07819082GXA8VTNL4M4B"
 
 stop_server(){
      echo -e "\e[36m $component-$env Server stopping In Progress \e[0m"
@@ -15,9 +16,9 @@ stop_server(){
      aws ec2 terminate-instances --instance-ids ${instance_id}
      echo -e "\e[36m $component-$env Server is stopped \e[0m"
      echo -e "\e[36m $component-${env} DNS record Deletion In Progress \e[0m \n\n"
-    sed -e "s/Component/${component}/" -e "s/Ipaddress/${private_IP}/" route53del.json > /tmp/DNS_del.json
-    aws route53 change-resource-record-sets --hosted-zone-id ${Hosted_zone_id} --change-batch file:///tmp/DNS_del.json
-    echo -e "\e[32m $component-${env} DNS record has been deleted \e[0m"
+     sed -e "s/Component/${component}/" -e "s/Ipaddress/${private_IP}/" route53del.json > /tmp/DNS_del.json
+     aws route53 change-resource-record-sets --hosted-zone-id ${Hosted_zone_id} --change-batch file:///tmp/DNS_del.json
+     echo -e "\e[32m $component-${env} DNS record has been deleted \e[0m"
 
 }
 
