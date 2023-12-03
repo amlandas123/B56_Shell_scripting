@@ -1,5 +1,5 @@
 {
-    "Comment": "Create DNS record ",
+    "Comment": "delete DNS record ",
     "Changes": [{
     "Action": "DELETE",
                 "ResourceRecordSet": {

@@ -9,10 +9,10 @@ fi
 component=$1
 env=$2
 Hosted_zone_id="Z07819082GXA8VTNL4M4B"
-
+instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=${component}-${env}" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
 stop_server(){
      echo -e "\e[36m $component-$env Server stopping In Progress \e[0m"
-     instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=${component}-${env}" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
+     private_IP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${component}-${env}}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
      aws ec2 terminate-instances --instance-ids ${instance_id}
      echo -e "\e[36m $component-$env Server is stopped \e[0m"
      echo -e "\e[36m $component-${env} DNS record Deletion In Progress \e[0m \n\n"
