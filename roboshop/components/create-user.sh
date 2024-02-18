@@ -1,6 +1,6 @@
 #!/bin/bash
 user_id=$(id -u)
-Logfile=/tmp/$temp.log
+Logfile=/tmp/temp.log
 if [ $user_id -ne 0 ];then
         echo -e "\e[32m Please run the program as sudo user \e[0m"
         exit 1
