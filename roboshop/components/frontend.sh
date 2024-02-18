@@ -17,8 +17,7 @@ stat(){
         echo -e "\e[31m Failure \e[0m"
     fi
 }
-
-echo -e "\e[32m ******Configuring $component******\e[0m"
+   ******Configuring $component******\e[0m"
 
 echo -n "Installing Nginx:"
 yum install nginx -y  &>>  $Logfile
