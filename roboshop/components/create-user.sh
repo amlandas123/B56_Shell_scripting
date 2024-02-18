@@ -18,8 +18,9 @@ create_user(){
     echo -e "Adding Application User $username \n"
     id $username 
     if [ $? -ne 0 ];then
-        useradd $username >> $Logfile
+        useradd $username
         stat $?
+        echo -e "\e[32m User $username has been added \e[0m"
     else
         echo -e "\e[31m User Already Exist \e[0m"
     fi
