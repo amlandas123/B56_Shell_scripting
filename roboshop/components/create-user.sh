@@ -1,4 +1,9 @@
 #!/bin/bash
+user_id=$(id -u)
+if [ $user_id -ne 0 ];then
+        echo -e "\e[32m Please run the program as sudo user \e[0m"
+        exit 1
+fi
 
 stat(){
     if [ $1 -eq 0 ];then
@@ -9,7 +14,7 @@ stat(){
 }
 
 create_user(){
-    echo -n "Adding Application User: "
+    echo -n "Adding Application User: \n"
     id $username
     if [ $? -ne 0 ];then
         useradd $username
