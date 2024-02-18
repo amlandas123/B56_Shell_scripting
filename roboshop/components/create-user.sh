@@ -15,7 +15,7 @@ stat(){
 }
 
 create_user(){
-    echo -n "Adding Application User $username"
+    echo -e "Adding Application User $username \n"
     id $username >> $Logfile
     if [ $? -ne 0 ];then
         useradd $username
