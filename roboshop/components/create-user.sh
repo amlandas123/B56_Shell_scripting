@@ -19,8 +19,8 @@ create_user(){
     id $username 
     if [ $? -ne 0 ];then
         useradd $username
-        stat $?
         echo -e "\e[32m User $username has been added \e[0m"
+        stat $?
     else
         echo -e "\e[31m User Already Exist \e[0m"
     fi
