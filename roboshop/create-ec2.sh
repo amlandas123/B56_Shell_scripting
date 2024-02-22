@@ -19,7 +19,7 @@ create_server(){
     private_IP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${component}-${env}}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
     echo -e "\e[32m $component-${env} Server Creation is completed \e[0m"
     echo -e "\e[36m $component-${env} DNS record Creation In Progress \e[0m \n\n"
-    sed -e "s/Component/${component}-${env}/" -e "s/Ipaddress/${private_IP}/" route53.json > /tmp/DNS.json
+    sed -e "s/component/${component}-${env}/" -e "s/Ipaddress/${private_IP}/" route53.json > /tmp/DNS.json
     aws route53 change-resource-record-sets --hosted-zone-id ${Hosted_zone_id} --change-batch file:///tmp/DNS.json
     echo -e "\e[32m $component-${env} DNS record has been created \e[0m"
 
