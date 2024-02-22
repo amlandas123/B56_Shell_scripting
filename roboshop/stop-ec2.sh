@@ -8,7 +8,7 @@ if [ -z $1 ] || [ -z $2 ]; then
 fi 
 component=$1
 env=$2
-Hosted_zone_id="Z07819082GXA8VTNL4M4B"
+Hosted_zone_id="Z09824163U3ILH99HO9CG"
 
 stop_server(){
      echo -e "\e[36m $component-$env Server stopping In Progress \e[0m"
