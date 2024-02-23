@@ -1,11 +1,12 @@
 {
-    "Comment": "Create DNS record ",
-    "Changes": [{
-    "Action": "DELETE",
-                "ResourceRecordSet": {
-                            "Name": "component.roboshop-internal",
-                            "Type": "A",
-                            "TTL": 10,
-                         "ResourceRecords": [{ "Value": "Ipaddress"}]
-}}]
+    "Comment": "Deleting DNS record",
+    "Changes": [
+        {
+            "Action": "DELETE",
+            "ResourceRecordSet": {
+                "Name": "component.roboshop-internal",
+                "Type": "A"
+            }
+        }
+    ]
 }
