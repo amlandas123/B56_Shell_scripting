@@ -18,7 +18,7 @@ stop_server(){
      echo -e "\e[36m $component-$env Server is stopped \e[0m"
      echo -e "\e[36m $component-${env} DNS record Deletion In Progress \e[0m \n\n"
      cat route53del.json > /tmp/DNS.json
-     aws route53 change-resource-record-sets --hosted-zone-id ${Hosted_zone_id} --change-batch file:///DNS.json
+     aws route53 change-resource-record-sets --hosted-zone-id ${Hosted_zone_id} --change-batch file:////home/centos/shell-scripting/B56_Shell_scripting/roboshop/route53del.json
      echo -e "\e[32m $component-${env} DNS record has been deleted \e[0m"
 
 }
