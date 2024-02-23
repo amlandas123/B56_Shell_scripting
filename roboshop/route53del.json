@@ -6,6 +6,7 @@
                             "Name": "component.roboshop-internal",
                             "Type": "A",
                             "TTL": 10,
-                            "ResourceRecords": [{ "Value": "component-env"}]
+                            
 }}]
 }
+// "ResourceRecords": [{ "Value": "component-env"}]
