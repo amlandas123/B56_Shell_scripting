@@ -17,8 +17,8 @@ stop_server(){
      aws ec2 terminate-instances --instance-ids ${instance_id}
      echo -e "\e[36m $component-$env Server is stopped \e[0m"
      echo -e "\e[36m $component-${env} DNS record Deletion In Progress \e[0m \n\n"
-     #route53del.json > /tmp/DNS.json
-     aws route53 change-resource-record-sets --hosted-zone-id ${Hosted_zone_id} --change-batch file:///route53del.json
+     cat route53del.json > /tmp/DNS.json
+     aws route53 change-resource-record-sets --hosted-zone-id ${Hosted_zone_id} --change-batch file:///DNS.json
      echo -e "\e[32m $component-${env} DNS record has been deleted \e[0m"
 
 }
