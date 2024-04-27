@@ -11,7 +11,7 @@ env=$2
 AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq .Images[].ImageId | sed -e 's/"//g')
 SG_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=Devops-normal-sg |jq .SecurityGroups[].GroupId |sed -e 's/"//g')
 Ins_type=t3.micro
-Hosted_zone_id="Z04859701G162VQQJD4H9"
+Hosted_zone_id="Z0276770345OCCW2ODGRP"
 #instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=user-dev" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
 
 create_server(){
