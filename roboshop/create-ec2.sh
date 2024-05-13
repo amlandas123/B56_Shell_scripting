@@ -16,7 +16,7 @@ Hosted_zone_id="Z0276770345OCCW2ODGRP"
 
 create_server(){
     echo -e "\e[36m $component-$env Server Creation In Progress \e[0m"
-    private_IP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type t3.micro --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${component}-${env}}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
+    private_IP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type t2.micro --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${component}-${env}}]" | jq .Instances[].PrivateIpAddress | sed -e 's/"//g')
     echo -e "\e[32m $component-${env} Server Creation is completed \e[0m"
     echo -e "\e[36m $component-${env} DNS record Creation In Progress \e[0m \n\n"
     sed -e "s/component/${component}-${env}/" -e "s/Ipaddress/${private_IP}/" route53.json > /tmp/DNS.json
