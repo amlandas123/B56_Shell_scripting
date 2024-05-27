@@ -53,3 +53,5 @@ cd ${component}-main
 mysql -u root -pRoboShop@1 <shipping.sql &>> $Logfile
 stat $? 
 
+set-hostname $component
+

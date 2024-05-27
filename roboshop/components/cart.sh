@@ -21,3 +21,4 @@ service_start
 
 
 echo -e "***** \e[35m $component Configuration Is Completed \e[0m ******"
+set-hostname $component

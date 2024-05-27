@@ -10,3 +10,5 @@ redis
 
 echo -e "\e[32m ******Configuring redis Completed******\e[0m"
 
+set-hostname $component
+

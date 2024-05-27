@@ -21,3 +21,4 @@ mongo < users.js &>> $Logfile
 stat $?
 
 echo -e "\e[32m ******Completed Configuring mongodb******\e[0m"
+set-hostname $component
