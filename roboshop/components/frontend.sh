@@ -67,7 +67,7 @@ stat $?
 
 echo -e "\e[32m ******Configuring $component Successful******\e[0m"
 
-set-hostname $component
+set-hostname ${component}
 
 
 

@@ -10,5 +10,5 @@ Maven
 
 echo -e "\e[32m ******Completed Configuring shipping******\e[0m"
 
-set-hostname $component
+set-hostname ${component}
 
