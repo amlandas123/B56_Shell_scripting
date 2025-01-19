@@ -8,10 +8,10 @@ if [ -z $1 ] || [ -z $2 ]; then
 fi 
 component=$1
 env=$2
-AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq .Images[].ImageId | sed -e 's/"//g')
+AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-RHEL9" | jq .Images[].ImageId | sed -e 's/"//g')
 SG_ID=$(aws ec2 describe-security-groups --filters Name=group-name,Values=Devops-normal-sg |jq .SecurityGroups[].GroupId |sed -e 's/"//g')
 Ins_type=t3.micro
-Hosted_zone_id="Z0276770345OCCW2ODGRP"
+Hosted_zone_id="Z0433170189B4C9V76MO9"
 #instance_id=$(aws ec2 describe-instances  --filters "Name=tag-value,Values=user-dev" | jq .Reservations[].Instances[].InstanceId | sed -e 's/"//g')
 
 create_server(){
